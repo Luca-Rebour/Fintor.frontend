@@ -1,0 +1,41 @@
+{
+  "signin": {
+    "title": "Iniciar sesión",
+    "subtitle": "o usa tu cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "button": "Iniciar Sesión",
+    "switchToSignup": "¿No tienes una cuenta?",
+    "signupLink": "Registrarse"
+  },
+  "signup": {
+    "title": "Crear Cuenta",
+    "subtitle": "o usa tu email para registrarte",
+    "name": "Nombre",
+    "lastname": "Apellido",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "dateOfBirth": "Fecha de nacimiento",
+    "button": "Registrarse",
+    "switchToSignin": "¿Ya tienes una cuenta?",
+    "signinLink": "Iniciar Sesión"
+  },
+  "overlay": {
+    "welcome": {
+      "title": "¡Bienvenido de nuevo!",
+      "subtitle": "Para mantenerte conectado con nosotros, inicia sesión con tu información personal",
+      "button": "Iniciar Sesión"
+    },
+    "hello": {
+      "title": "¡Hola, Amigo!",
+      "subtitle": "Ingresa tus datos personales y comienza tu viaje con nosotros",
+      "button": "Registrarse"
+    }
+  },
+  "social": {
+    "facebook": "Continuar con Facebook",
+    "google": "Continuar con Google",
+    "linkedin": "Continuar con LinkedIn"
+  }
+}

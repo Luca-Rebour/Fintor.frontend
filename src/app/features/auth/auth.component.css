@@ -1,0 +1,9 @@
+.perspective { perspective: 1000px; perspective-origin: 50% 50%; }
+.flip-card-inner { transform-style: preserve-3d; will-change: transform; }
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+
+/* estado girado */
+.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+/* cara trasera, un pequeño "lift" para evitar artefactos */
+.rotate-y-180 { transform: rotateY(180deg) translateZ(0.01px); }

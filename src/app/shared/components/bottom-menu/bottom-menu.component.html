@@ -1,0 +1,61 @@
+<!-- Footer Integrated Action Button -->
+<div class="relative flex flex-col items-center flex-1 bg-emerald-500 rounded-full">
+  
+  <!-- Mini Menu (desplegable hacia arriba desde el footer) -->
+  <div [class]="'absolute bottom-full mb-4 left-1/2 transform -translate-x-1/2 flex flex-col space-y-3 transition-all duration-300 ease-in-out ' + (isMenuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2 pointer-events-none')">
+    
+    <!-- Opción: Agregar Transacción -->
+    <button (click)="addTransaction()" 
+            class="flex items-center bg-white shadow-lg rounded-full px-4 py-3 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 border border-gray-100 whitespace-nowrap">
+      <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+        </svg>
+      </div>
+      <span class="text-gray-700 font-medium text-sm">Agregar Transacción</span>
+    </button>
+
+    <!-- Opción: Cambiar de Cuenta -->
+    <button (click)="changeAccount()" 
+            class="flex items-center bg-white shadow-lg rounded-full px-4 py-3 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 border border-gray-100 whitespace-nowrap">
+      <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+        </svg>
+      </div>
+      <span class="text-gray-700 font-medium text-sm">Cambiar de Cuenta</span>
+    </button>
+
+    <!-- Opción: Agregar Cuenta -->
+    <button (click)="addAccount()" 
+            class="flex items-center bg-white shadow-lg rounded-full px-4 py-3 hover:shadow-xl transition-all duration-200 hover:-translate-y-1 border border-gray-100 whitespace-nowrap">
+      <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+        </svg>
+      </div>
+      <span class="text-gray-700 font-medium text-sm">Agregar Cuenta</span>
+    </button>
+  </div>
+
+  <!-- Botón Principal integrado en el Footer -->
+  <button (click)="toggleMenu()" 
+          [class]="'flex flex-col items-center py-2 px-3 rounded-lg transition-all duration-200 min-w-0 text-white ' + (isMenuOpen ? 'text-white' : 'text-gray-500 hover:text-text-white')">
+    
+    <!-- Ícono del botón con animación -->
+    <div [class]="'w-6 h-6 mb-1 transition-transform duration-300 ' + (isMenuOpen ? 'rotate-45' : 'rotate-0')">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+      </svg>
+    </div>
+    
+    <!-- Texto del botón -->
+    <span class="text-xs font-medium truncate text-white">Actions</span>
+  </button>
+
+</div>
+
+<!-- Backdrop para cerrar el menú al hacer click fuera (solo cuando está abierto) -->
+<div *ngIf="isMenuOpen" 
+     (click)="closeMenu()" 
+     class="fixed inset-0 z-30 bg-black bg-opacity-20 transition-opacity duration-300"></div>

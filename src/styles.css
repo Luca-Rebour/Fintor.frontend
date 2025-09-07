@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====== Tokens HSL (light/dark) ====== */
+:root {
+  /* Neutrales */
+  --bg: 0 0% 100%;
+  --fg: 222 47% 11%;      /* slate-900 */
+  --muted: 210 20% 96%;   /* slate-100 */
+  --border: 214 32% 91%;  /* slate-200 */
+
+  /* Brand & estados */
+  --brand: 52.7% 0.154 150.069;
+  --accent: 245 58% 51%;  /* #4F46E5 indigo-600 */
+
+  --success: 142 72% 35%; /* #16A34A */
+  --danger: 0 72% 45%;    /* #DC2626 */
+  --warning: 38 92% 50%;  /* #F59E0B */
+  --info: 199 89% 55%;    /* #0EA5E9 */
+}
+
+:root.dark,
+[data-theme="dark"] {
+  --bg: 222 47% 11%;      /* slate-900 */
+  --fg: 210 40% 98%;      /* slate-50 */
+  --muted: 215 25% 17%;   /* slate-800 */
+  --border: 215 20% 25%;  /* slate-700 */
+
+  --brand: 68.5% 0.152 152.769;
+  --accent: 245 58% 60%;
+
+  --success: 142 72% 40%;
+  --danger: 0 72% 55%;
+  --warning: 38 92% 55%;
+  --info: 199 89% 60%;
+}
+
+/* ====== Fondo tipo “finance grid” ====== */
+.body-finance-bg {
+  position: relative;
+  background: radial-gradient(1200px 400px at 50% 0%, hsl(var(--brand)/0.08), transparent 60%),
+              linear-gradient(to bottom right, hsl(0 0% 100%), hsl(var(--muted)));
+}
+.body-finance-bg::before {
+  /* grid sutil */
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(hsl(var(--brand)/0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--brand)/0.06) 1px, transparent 1px);
+  background-size: 64px 64px, 64px 64px;
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  pointer-events: none;
+}
+
+/* iconos de moneda muy suaves */
+.finance-marks {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.finance-marks span {
+  position: absolute; color: hsl(var(--brand)/0.10);
+  font-weight: 700; filter: blur(0.2px);
+}
+.finance-marks .m1 { left: 20%; top: 34%; font-size: 56px; }
+.finance-marks .m2 { right: 9%; top: 20%; font-size: 46px; }
+.finance-marks .m3 { left: 6%; bottom: 10%; font-size: 40px; }
+.finance-marks .m4 { right: 12%; bottom: 8%; font-size: 42px; }
+
+/* ====== Flip card ====== */
+.perspective { perspective: 1200px; }
+.flip-card { will-change: transform, height; }
+.flip-card-inner {
+  transform-style: preserve-3d;
+}
+.flip-card-inner.flipped { transform: rotateY(180deg); }
+.backface-hidden { backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+
+/* ====== Insignia superior ($) ====== */
+.brand-badge {
+  @apply bg-brand text-white rounded-2xl shadow-xl grid place-items-center;
+  width: 56px; height: 56px;
+  box-shadow:
+    0 10px 25px hsl(var(--brand)/0.25),
+    0 0 0 8px hsl(var(--brand)/0.10);
+}
+
+/* Ajustes de scrollbar suaves (opcional) */
+* { scrollbar-color: hsl(var(--brand)/0.35) transparent; scrollbar-width: thin; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

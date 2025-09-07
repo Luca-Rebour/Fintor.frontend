@@ -1,0 +1,99 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="bg-white flex items-center justify-center flex-col px-6 sm:px-8 md:px-12 h-full text-center">
+  <h1 class="font-bold text-2xl sm:text-3xl mb-4">{{ 'auth.signup.title' | transloco }}</h1>
+
+  <span class="text-xs sm:text-sm text-gray-600 mb-4">{{ 'auth.signup.subtitle' | transloco }}</span>
+
+  <div class="w-full max-w-xs sm:max-w-sm">
+    <!-- Name Input -->
+    <div class="relative">
+      <input 
+        type="text" 
+        formControlName="name"
+        [placeholder]="'auth.signup.name' | transloco"
+        [class]="'bg-gray-100 border-0 px-3 sm:px-4 py-2 sm:py-3 my-1 sm:my-2 w-full rounded text-sm focus:outline-none transition-all ' + 
+                 (isFieldInvalid('name') ? 'focus:ring-2 focus:ring-red-500 border-red-300' : 'focus:ring-2 focus:ring-[#FF4B2B]')" />
+      <div *ngIf="isFieldInvalid('name')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getFieldError('name') }}
+      </div>
+    </div>
+
+    <!-- Lastname Input -->
+    <div class="relative">
+      <input 
+        type="text" 
+        formControlName="lastname"
+        [placeholder]="'auth.signup.lastname' | transloco"
+        [class]="'bg-gray-100 border-0 px-3 sm:px-4 py-2 sm:py-3 my-1 sm:my-2 w-full rounded text-sm focus:outline-none transition-all ' + 
+                 (isFieldInvalid('lastname') ? 'focus:ring-2 focus:ring-red-500 border-red-300' : 'focus:ring-2 focus:ring-[#FF4B2B]')" />
+      <div *ngIf="isFieldInvalid('lastname')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getFieldError('lastname') }}
+      </div>
+    </div>
+
+    <!-- Email Input -->
+    <div class="relative">
+      <input 
+        type="email" 
+        formControlName="email"
+        [placeholder]="'auth.signup.email' | transloco"
+        [class]="'bg-gray-100 border-0 px-3 sm:px-4 py-2 sm:py-3 my-1 sm:my-2 w-full rounded text-sm focus:outline-none transition-all ' + 
+                 (isFieldInvalid('email') ? 'focus:ring-2 focus:ring-red-500 border-red-300' : 'focus:ring-2 focus:ring-[#FF4B2B]')" />
+      <div *ngIf="isFieldInvalid('email')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getFieldError('email') }}
+      </div>
+    </div>
+
+    <!-- Password Input -->
+    <div class="relative">
+      <input 
+        type="password" 
+        formControlName="password"
+        [placeholder]="'auth.signup.password' | transloco"
+        [class]="'bg-gray-100 border-0 px-3 sm:px-4 py-2 sm:py-3 my-1 sm:my-2 w-full rounded text-sm focus:outline-none transition-all ' + 
+                 (isFieldInvalid('password') ? 'focus:ring-2 focus:ring-red-500 border-red-300' : 'focus:ring-2 focus:ring-[#FF4B2B]')" />
+      <div *ngIf="isFieldInvalid('password')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getFieldError('password') }}
+      </div>
+    </div>
+
+    <!-- Date of Birth Input -->
+    <div class="relative">
+      <input 
+        type="date" 
+        formControlName="dateOfBirth"
+        [placeholder]="'auth.signup.dateOfBirth' | transloco"
+        [class]="'bg-gray-100 border-0 px-3 sm:px-4 py-2 sm:py-3 my-1 sm:my-2 w-full rounded text-sm focus:outline-none transition-all ' + 
+                 (isFieldInvalid('dateOfBirth') ? 'focus:ring-2 focus:ring-red-500 border-red-300' : 'focus:ring-2 focus:ring-[#FF4B2B]')" />
+      <div *ngIf="isFieldInvalid('dateOfBirth')" class="text-red-500 text-xs mt-1 text-left">
+        {{ getFieldError('dateOfBirth') }}
+      </div>
+    </div>
+  </div>
+
+  <button 
+    type="submit"
+    [disabled]="isLoading"
+    [class]="'rounded-full border border-[#FF4B2B] text-white text-xs sm:text-[12px] font-bold px-8 sm:px-12 py-2 sm:py-3 tracking-widest uppercase focus:outline-none transition-all mt-4 ' +
+             (isLoading ? 'bg-gray-400 border-gray-400 cursor-not-allowed' : 'bg-[#FF4B2B] hover:bg-[#e63e22] active:scale-95')">
+    
+    <!-- Loading Spinner -->
+    <span *ngIf="isLoading" class="flex items-center justify-center">
+      <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      Registrando...
+    </span>
+    
+    <!-- Normal Button Text -->
+    <span *ngIf="!isLoading">
+      {{ 'auth.signup.button' | transloco }}
+    </span>
+  </button>
+
+  <!-- Mobile toggle button -->
+  <button type="button" (click)="onSignInClick()"
+          class="md:hidden mt-6 text-[#FF4B2B] text-sm hover:underline transition-colors">
+    {{ 'auth.signup.switchToSignin' | transloco }} <span class="font-bold">{{ 'auth.signup.signinLink' | transloco }}</span>
+  </button>
+</form>

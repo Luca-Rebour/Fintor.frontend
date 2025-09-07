@@ -1,0 +1,41 @@
+<div class="p-6 flex flex-col items-center">
+    <h2 class="text-lg font-semibold">Monto total: $900</h2>
+
+    <div class="mt-4">
+        <button class="bg-emerald-500 text-white px-4 py-2 rounded mr-2">Depositar</button>
+        <button class="bg-rose-500 text-white px-4 py-2 rounded">Retirar</button>
+    </div>
+</div>
+
+
+<div class="p-6">
+    <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Transactions</h3>
+    
+    <!-- Lista de transacciones -->
+    <div class="space-y-3 bg-slate-50 p-3 rounded-lg">
+        <div *ngFor="let transaction of transactions" 
+             class="flex items-center justify-between p-3 bg-white rounded-xl border border-gray-100 hover:shadow-md transition-all duration-200">
+            
+            <!-- Icono y detalles -->
+            <div class="flex items-center space-x-3">
+                <!-- Icono con color de fondo dinámico -->
+                <div [ngClass]="'w-10 h-10 rounded-lg flex items-center justify-center text-lg ' + getIconBackgroundClass(transaction.color)">
+                    {{ transaction.icon }}
+                </div>
+                
+                <!-- Información de la transacción -->
+                <div class="flex flex-col">
+                    <span class="font-medium text-gray-900 text-sm">{{ transaction.category }}</span>
+                    <span class="text-xs text-gray-500">{{ transaction.subcategory }}</span>
+                </div>
+            </div>
+            
+            <!-- Monto -->
+            <div class="text-right">
+                <span [ngClass]="'font-semibold text-sm ' + (transaction.type === 'income' ? 'text-green-600' : 'text-red-600')">
+                    {{ transaction.type === 'income' ? '+' : '' }}{{ transaction.amount | number:'1.2-2' }}$
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

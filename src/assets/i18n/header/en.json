@@ -1,0 +1,20 @@
+{
+  "navigation": {
+    "accounts": "Accounts",
+    "createTransaction": "Create Transaction",
+    "budgets": "Budgets",
+    "settings": "Settings"
+  },
+  "user": {
+    "demoUser": "Demo User",
+    "demoEmail": "demo@fintor.com"
+  },
+  "actions": {
+    "logout": "Sign Out",
+    "openMenu": "Open main menu",
+    "closeMenu": "Close menu"
+  },
+  "tooltips": {
+    "logout": "Sign Out"
+  }
+}

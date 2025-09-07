@@ -1,0 +1,9 @@
+{
+    "title": "Fintor - La plataforma de inversión inmobiliaria",
+    "welcome": "Bienvenido a Fintor en {{language}}",
+    "description": "Fintor es una plataforma que permite a los inversores comprar y vender propiedades tokenizadas.",
+    "languajes": {
+        "es": "Español",
+        "en": "English"
+    }
+}

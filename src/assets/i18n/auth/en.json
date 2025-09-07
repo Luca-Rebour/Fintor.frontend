@@ -1,0 +1,41 @@
+{
+  "signin": {
+    "title": "Sign in",
+    "subtitle": "or use your account",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot your password?",
+    "button": "Sign In",
+    "switchToSignup": "Don't have an account?",
+    "signupLink": "Sign Up"
+  },
+  "signup": {
+    "title": "Create Account",
+    "subtitle": "or use your email for registration",
+    "name": "First Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "dateOfBirth": "Date of Birth",
+    "button": "Sign Up",
+    "switchToSignin": "Already have an account?",
+    "signinLink": "Sign In"
+  },
+  "overlay": {
+    "welcome": {
+      "title": "Welcome Back!",
+      "subtitle": "To keep connected with us please login with your personal info",
+      "button": "Sign In"
+    },
+    "hello": {
+      "title": "Hello, Friend!",
+      "subtitle": "Enter your personal details and start journey with us",
+      "button": "Sign Up"
+    }
+  },
+  "social": {
+    "facebook": "Continue with Facebook",
+    "google": "Continue with Google",
+    "linkedin": "Continue with LinkedIn"
+  }
+}

@@ -1,0 +1,62 @@
+<div class="absolute right-2 top-2 space-x-2 z-[200]">
+  @for (lang of languages; track lang.code) {
+    <button (click)="changeLanguage(lang.code)" class="text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors">
+      {{ lang.name | transloco }}
+    </button>
+  }
+</div>
+<section class="h-screen bg-gray-100">
+  <div class="relative bg-white overflow-hidden w-full h-full">
+
+    <!-- SIGN IN -->
+    <div class="absolute top-0 left-0 h-full w-full md:w-1/2 z-20 transition-all duration-700 ease-in-out"
+         [ngClass]="{ 'md:translate-x-full': rightPanel, '-translate-x-full': rightPanel && 'mobile' }">
+      <app-signin (switchToSignup)="signUp()"></app-signin>
+    </div>
+
+    <!-- SIGN UP -->
+    <div class="absolute top-0 left-0 h-full w-full md:w-1/2 opacity-0 md:opacity-0 z-10 transition-all duration-700 ease-in-out"
+         [ngClass]="{ 'md:translate-x-full md:opacity-100 md:z-30': rightPanel, 'translate-x-0 opacity-100 z-30': rightPanel && 'mobile' }">
+      <app-signup (switchToSignin)="signIn()"></app-signup>
+    </div>
+
+    <!-- OVERLAY CONTAINER - Hidden on mobile -->
+    <div class="hidden md:block absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-transform duration-700 ease-in-out z-[100]"
+         [ngClass]="{ '-translate-x-full': rightPanel }">
+      <div class="bg-gradient-to-r from-[#FF4B2B] to-[#FF416C] text-white bg-no-repeat bg-cover bg-left
+                  relative -left-full h-full w-[200%] transform transition-transform duration-700 ease-in-out"
+           [ngClass]="{ 'translate-x-1/2': rightPanel }">
+
+        <!-- LEFT PANEL -->
+        <div class="absolute top-0 h-full w-1/2 flex items-center justify-center flex-col px-6 lg:px-10 text-center
+                    transform transition-transform duration-700 ease-in-out -translate-x-[20%]"
+             [ngClass]="{ 'translate-x-0': rightPanel }">
+          <h1 class="font-bold text-2xl lg:text-3xl mb-4">{{ 'auth.overlay.welcome.title' | transloco }}</h1>
+          <p class="text-sm font-light leading-5 tracking-wide my-4 lg:my-5 max-w-xs">
+            {{ 'auth.overlay.welcome.subtitle' | transloco }}
+          </p>
+          <button type="button" (click)="signIn()"
+                  class="rounded-full border border-white bg-transparent text-white text-xs font-bold px-8 lg:px-12 py-2 lg:py-3 tracking-widest uppercase active:scale-95 focus:outline-none hover:bg-white hover:text-[#FF4B2B] transition-all">
+            {{ 'auth.overlay.welcome.button' | transloco }}
+          </button>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="absolute right-0 top-0 h-full w-1/2 flex items-center justify-center flex-col px-6 lg:px-10 text-center
+                    transform transition-transform duration-700 ease-in-out"
+             [ngClass]="{ 'translate-x-[20%]': rightPanel }">
+          <h1 class="font-bold text-2xl lg:text-3xl mb-4">{{ 'auth.overlay.hello.title' | transloco }}</h1>
+          <p class="text-sm font-light leading-5 tracking-wide my-4 lg:my-5 max-w-xs">
+            {{ 'auth.overlay.hello.subtitle' | transloco }}
+          </p>
+          <button type="button" (click)="signUp()"
+                  class="rounded-full border border-white bg-transparent text-white text-xs font-bold px-8 lg:px-12 py-2 lg:py-3 tracking-widest uppercase active:scale-95 focus:outline-none hover:bg-white hover:text-[#FF4B2B] transition-all">
+            {{ 'auth.overlay.hello.button' | transloco }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

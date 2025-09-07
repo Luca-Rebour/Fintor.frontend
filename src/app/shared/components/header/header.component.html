@@ -1,0 +1,184 @@
+<header class="bg-white shadow-lg sticky top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Logo / Brand -->
+      <div class="flex-shrink-0 flex items-center">
+        <button (click)="navigateTo('/')" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+          <!-- Logo Icon -->
+          <div class="w-8 h-8 bg-gradient-to-r from-[#FF4B2B] to-[#FF416C] rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-lg">F</span>
+          </div>
+          <span class="text-xl font-bold text-gray-900 hidden sm:block">Fintor</span>
+        </button>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <button (click)="navigateTo('/cuentas')" 
+                class="text-gray-700 hover:text-[#FF4B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+          </svg>
+          <span>{{ 'header.navigation.accounts' | transloco }}</span>
+        </button>
+
+        <button (click)="navigateTo('/transacciones/crear')" 
+                class="text-gray-700 hover:text-[#FF4B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          <span>{{ 'header.navigation.createTransaction' | transloco }}</span>
+        </button>
+
+        <button (click)="navigateTo('/presupuestos')" 
+                class="text-gray-700 hover:text-[#FF4B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          <span>{{ 'header.navigation.budgets' | transloco }}</span>
+        </button>
+
+        <button (click)="navigateTo('/configuracion')" 
+                class="text-gray-700 hover:text-[#FF4B2B] px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <span>{{ 'header.navigation.settings' | transloco }}</span>
+        </button>
+      </div>
+
+      <!-- User Menu & Mobile Menu Button -->
+      <div class="flex items-center space-x-4">
+        
+        <!-- User Avatar (Desktop) -->
+        <div class="hidden md:flex items-center space-x-3">
+          <div class="relative">
+            <!-- User Avatar -->
+            <button class="flex items-center space-x-2 text-sm rounded-full bg-gray-100 hover:bg-gray-200 px-3 py-2 transition-colors">
+              <div class="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                <span class="text-white font-semibold text-sm">U</span>
+              </div>
+              <span class="text-gray-700 hidden lg:block">{{ 'header.user.demoUser' | transloco }}</span>
+              <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Logout Button -->
+          <button (click)="logout()" 
+                  class="text-gray-500 hover:text-red-600 p-2 rounded-md transition-colors" 
+                  [title]="'header.tooltips.logout' | transloco">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button (click)="toggleMenu()" 
+                class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#FF4B2B] hover:bg-gray-100 transition-colors">
+          <span class="sr-only">{{ 'header.actions.openMenu' | transloco }}</span>
+          <!-- Hamburger Icon -->
+          <svg *ngIf="!isMenuOpen" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <!-- X Icon -->
+          <svg *ngIf="isMenuOpen" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div [class]="'md:hidden fixed inset-0 z-50 ' + (isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none')" 
+         *ngIf="isMenuOpen || !isMenuOpen">
+      
+      <!-- Backdrop -->
+      <div [class]="'absolute inset-0 bg-black transition-opacity duration-300 ease-in-out ' + (isMenuOpen ? 'opacity-50' : 'opacity-0')"
+           (click)="closeMenu()"></div>
+      
+      <!-- Slide Menu -->
+      <div [class]="'relative max-w-xs w-full bg-white h-full shadow-xl transform transition-transform duration-300 ease-in-out ' + (isMenuOpen ? 'translate-x-0' : '-translate-x-full')">
+        <div class="flex flex-col h-full">
+          
+          <!-- Header del menú -->
+          <div class="flex items-center justify-between p-4 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-900">Fintor</h2>
+            <button (click)="closeMenu()" 
+                    class="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 transition-colors">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Content del menú -->
+          <div class="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+            
+            <!-- User Info Mobile -->
+            <div class="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg mb-6">
+              <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                <span class="text-white font-semibold">U</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-gray-900">{{ 'header.user.demoUser' | transloco }}</p>
+                <p class="text-xs text-gray-500">{{ 'header.user.demoEmail' | transloco }}</p>
+              </div>
+            </div>
+
+            <!-- Navigation Links Mobile -->
+            <nav class="space-y-2">
+              <button (click)="navigateTo('/cuentas')" 
+                      class="w-full text-gray-700 hover:text-[#FF4B2B] hover:bg-gray-50 px-4 py-3 rounded-lg text-base font-medium transition-colors flex items-center space-x-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                </svg>
+                <span>{{ 'header.navigation.accounts' | transloco }}</span>
+              </button>
+
+              <button (click)="navigateTo('/transacciones/crear')" 
+                      class="w-full text-gray-700 hover:text-[#FF4B2B] hover:bg-gray-50 px-4 py-3 rounded-lg text-base font-medium transition-colors flex items-center space-x-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                <span>{{ 'header.navigation.createTransaction' | transloco }}</span>
+              </button>
+
+              <button (click)="navigateTo('/presupuestos')" 
+                      class="w-full text-gray-700 hover:text-[#FF4B2B] hover:bg-gray-50 px-4 py-3 rounded-lg text-base font-medium transition-colors flex items-center space-x-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                <span>{{ 'header.navigation.budgets' | transloco }}</span>
+              </button>
+
+              <button (click)="navigateTo('/configuracion')" 
+                      class="w-full text-gray-700 hover:text-[#FF4B2B] hover:bg-gray-50 px-4 py-3 rounded-lg text-base font-medium transition-colors flex items-center space-x-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>{{ 'header.navigation.settings' | transloco }}</span>
+              </button>
+            </nav>
+          </div>
+
+          <!-- Footer del menú -->
+          <div class="p-4 border-t border-gray-200">
+            <button (click)="logout()" 
+                    class="w-full text-red-600 hover:text-red-800 hover:bg-red-50 px-4 py-3 rounded-lg text-base font-medium transition-colors flex items-center space-x-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
+              <span>{{ 'header.actions.logout' | transloco }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
