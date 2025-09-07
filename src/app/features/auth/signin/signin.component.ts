@@ -9,11 +9,10 @@ import { SignInModel } from '../../../shared/models/signin.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-signin',
-  standalone: true,
-  imports: [TranslocoModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './signin.component.html',
-  styleUrl: './signin.component.css'
+    selector: 'app-signin',
+    imports: [TranslocoModule, ReactiveFormsModule, CommonModule],
+    templateUrl: './signin.component.html',
+    styleUrl: './signin.component.css'
 })
 export class SigninComponent implements OnInit {
   @Output() switchToSignup = new EventEmitter<void>();

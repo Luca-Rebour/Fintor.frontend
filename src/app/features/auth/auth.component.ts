@@ -7,11 +7,10 @@ import { TranslationService } from '../../core/services/translation.service';
 import { AvailableLangs } from '../../transloco-config';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  imports: [NgClass, TranslocoModule, SigninComponent, SignupComponent],
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+    selector: 'app-auth',
+    imports: [NgClass, TranslocoModule, SigninComponent, SignupComponent],
+    templateUrl: './auth.component.html',
+    styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
   rightPanel = false;

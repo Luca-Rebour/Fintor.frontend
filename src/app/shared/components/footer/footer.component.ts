@@ -5,11 +5,11 @@ import { filter } from 'rxjs/operators';
 import { BottomMenuComponent } from "../bottom-menu/bottom-menu.component";
 
 @Component({
-  selector: 'app-footer',
-  standalone: true,
-  imports: [CommonModule, BottomMenuComponent],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+    selector: 'app-footer',
+    standalone: true,
+    imports: [CommonModule, BottomMenuComponent],
+    templateUrl: './footer.component.html',
+    styleUrl: './footer.component.css'
 })
 export class FooterComponent {
   private router = inject(Router);

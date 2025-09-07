@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { NgClass, NgFor, DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [NgClass, NgFor, DecimalPipe],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    standalone: true,
+    imports: [NgClass, NgFor, DecimalPipe],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
   transactions = [
