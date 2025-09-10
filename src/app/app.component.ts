@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from "./shared/components/footer/footer.component";
 
@@ -8,6 +8,6 @@ import { FooterComponent } from "./shared/components/footer/footer.component";
     imports: [RouterOutlet, FooterComponent],
     templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Fintor.frontend';
 }

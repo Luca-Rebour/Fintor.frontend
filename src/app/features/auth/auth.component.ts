@@ -8,6 +8,7 @@ import { AvailableLangs } from '../../transloco-config';
 
 @Component({
     selector: 'app-auth',
+    standalone: true,
     imports: [NgClass, TranslocoModule, SigninComponent, SignupComponent],
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.css']

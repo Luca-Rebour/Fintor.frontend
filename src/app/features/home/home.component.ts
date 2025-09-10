@@ -1,73 +1,66 @@
-import { Component } from '@angular/core';
-import { NgClass, NgFor, DecimalPipe } from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgClass, NgFor, NgIf, DecimalPipe, AsyncPipe } from '@angular/common';
+import { MovementsChartComponent } from "../../shared/components/movements-chart/movements-chart.component";
+import { TransactionsService } from '../../shared/services/transactions.service';
+import { TransactionModel } from '../../shared/models/transaction.model';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [NgClass, NgFor, DecimalPipe],
+    imports: [NgClass, NgFor, NgIf, DecimalPipe, AsyncPipe, MovementsChartComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })
-export class HomeComponent {
-  transactions = [
-    { 
-      icon: '�', 
-      category: 'ETF', 
-      subcategory: 'Investment • Cash',
-      amount: 100.00, 
-      type: 'income',
-      color: 'purple'
-    },
-    { 
-      icon: '⛽', 
-      category: 'Gas & Fuel', 
-      subcategory: 'Gas & Fuel • Cash',
-      amount: -32.00, 
-      type: 'expense',
-      color: 'blue'
-    },
-    { 
-      icon: '🎮', 
-      category: 'Gaming', 
-      subcategory: 'Gaming • Cash',
-      amount: -10.00, 
-      type: 'expense',
-      color: 'green'
-    },
-    { 
-      icon: '�', 
-      category: 'Groceries', 
-      subcategory: 'Groceries • Cash',
-      amount: -92.00, 
-      type: 'expense',
-      color: 'orange'
-    },
-    { 
-      icon: '💰', 
-      category: 'Salary', 
-      subcategory: 'Salary • Cash',
-      amount: 1222.00, 
-      type: 'income',
-      color: 'emerald'
-    },
-    { 
-      icon: '🏠', 
-      category: 'Rent/Mortgage', 
-      subcategory: 'Rent/Mortgage • Cash',
-      amount: -1222.00, 
-      type: 'expense',
-      color: 'red'
-    },
-    { 
-      icon: '🎯', 
-      category: 'Freelance', 
-      subcategory: 'Freelance • Cash',
-      amount: 122.00, 
-      type: 'income',
-      color: 'cyan'
-    }
-  ];
+export class HomeComponent implements OnInit, OnDestroy {
+  
+  // Observables del servicio
+  transactions$!: Observable<TransactionModel[]>;
+  loading$!: Observable<boolean>;
+  
+  // Propiedades calculadas
+  totalIncome = 0;
+  totalExpenses = 0;
+  balance = 0;
+  
+  private subscription = new Subscription();
 
+  constructor(private transactionsService: TransactionsService) { }
+
+  ngOnInit() {
+    // Inicializar los observables
+    this.transactions$ = this.transactionsService.transactions$;
+    this.loading$ = this.transactionsService.loading$;
+
+    // Cargar las transacciones al inicializar el componente
+    this.subscription.add(
+      this.transactionsService.getLatestTransactions().subscribe()
+    );
+
+    // Suscribirse a los cambios de transacciones para actualizar los totales
+    this.subscription.add(
+      this.transactions$.subscribe(transactions => {
+        this.updateTotals();
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  // Actualizar los totales basados en las transacciones actuales
+  private updateTotals(): void {
+    this.totalIncome = this.transactionsService.getTotalIncome();
+    this.totalExpenses = this.transactionsService.getTotalExpenses();
+    this.balance = this.transactionsService.getBalance();
+  }
+
+  // Método para refrescar las transacciones
+  refreshTransactions(): void {
+    this.transactionsService.refreshTransactions();
+  }
+  
   // Método para obtener las clases de color de fondo del icono
   getIconBackgroundClass(color: string): string {
     const colorClasses: { [key: string]: string } = {

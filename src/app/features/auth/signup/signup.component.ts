@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-signup',
+    standalone: true,
     imports: [TranslocoModule, ReactiveFormsModule, CommonModule],
     templateUrl: './signup.component.html',
     styleUrl: './signup.component.css'

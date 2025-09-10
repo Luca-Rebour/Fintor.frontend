@@ -17,8 +17,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
     setHeaders: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      // Agregar otros headers comunes aquí
-      // 'Authorization': `Bearer ${token}` // Si manejas autenticación
+      'Authorization': `Bearer ${localStorage.getItem('token') || ''}`
     }
   });
 
