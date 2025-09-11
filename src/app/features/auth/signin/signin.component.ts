@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-signin',
+    standalone: true,
     imports: [TranslocoModule, ReactiveFormsModule, CommonModule],
     templateUrl: './signin.component.html',
     styleUrl: './signin.component.css'
@@ -57,9 +58,8 @@ export class SigninComponent implements OnInit {
         this.snackbar.open('¡Bienvenido! Has iniciado sesión correctamente.', 'Close', {
           duration: 5000,
         });
-        // Aquí puedes guardar el token, datos del usuario, etc.
-        // localStorage.setItem('token', response.token);
-        // this.router.navigate(['/dashboard']);
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/home']);
         console.log('Login successful:', response);
         this.isLoading = false;
       },

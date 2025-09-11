@@ -1,39 +1,64 @@
 <div class="p-6 flex flex-col items-center">
-    <h2 class="text-lg font-semibold">Monto total: $900</h2>
+
+<app-movements-chart />
+
+    <!-- Mostrar totales calculados en tiempo real -->
+    <div class="bg-white rounded-lg shadow-md p-4 w-full max-w-md mb-4">
+        <h2 class="text-lg font-semibold text-center mb-2">Balance Total</h2>
+        <p class="text-2xl font-bold text-center" [ngClass]="balance >= 0 ? 'text-green-600' : 'text-red-600'">
+            ${{ balance | number:'1.2-2' }}
+        </p>
+        
+        <div class="grid grid-cols-2 gap-4 mt-4">
+            <div class="text-center">
+                <p class="text-sm text-gray-600">Ingresos</p>
+                <p class="text-lg font-semibold text-green-600">${{ totalIncome | number:'1.2-2' }}</p>
+            </div>
+            <div class="text-center">
+                <p class="text-sm text-gray-600">Gastos</p>
+                <p class="text-lg font-semibold text-red-600">${{ totalExpenses | number:'1.2-2' }}</p>
+            </div>
+        </div>
+    </div>
 
     <div class="mt-4">
         <button class="bg-emerald-500 text-white px-4 py-2 rounded mr-2">Depositar</button>
-        <button class="bg-rose-500 text-white px-4 py-2 rounded">Retirar</button>
+        <button class="bg-rose-500 text-white px-4 py-2 rounded mr-2">Retirar</button>
     </div>
 </div>
 
 
 <div class="p-6">
-    <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Transactions</h3>
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-gray-900">Recent Transactions</h3>
+        <!-- Indicador de carga -->
+        <div *ngIf="loading$ | async" class="text-sm text-gray-500">
+            Cargando...
+        </div>
+    </div>
     
-    <!-- Lista de transacciones -->
+    <!-- Lista de transacciones usando el observable -->
     <div class="space-y-3 bg-slate-50 p-3 rounded-lg">
-        <div *ngFor="let transaction of transactions" 
+        <div *ngFor="let transaction of transactions$ | async" 
              class="flex items-center justify-between p-3 bg-white rounded-xl border border-gray-100 hover:shadow-md transition-all duration-200">
             
             <!-- Icono y detalles -->
             <div class="flex items-center space-x-3">
                 <!-- Icono con color de fondo dinámico -->
-                <div [ngClass]="'w-10 h-10 rounded-lg flex items-center justify-center text-lg ' + getIconBackgroundClass(transaction.color)">
-                    {{ transaction.icon }}
+                <div [ngClass]="'w-10 h-10 rounded-lg flex items-center justify-center text-lg ' + getIconBackgroundClass('red')">
+                    {{ transaction.category.icon }}
                 </div>
                 
                 <!-- Información de la transacción -->
                 <div class="flex flex-col">
-                    <span class="font-medium text-gray-900 text-sm">{{ transaction.category }}</span>
-                    <span class="text-xs text-gray-500">{{ transaction.subcategory }}</span>
+                    <span class="font-medium text-gray-900 text-sm">{{ transaction.category.name }}</span>
                 </div>
             </div>
             
             <!-- Monto -->
             <div class="text-right">
-                <span [ngClass]="'font-semibold text-sm ' + (transaction.type === 'income' ? 'text-green-600' : 'text-red-600')">
-                    {{ transaction.type === 'income' ? '+' : '' }}{{ transaction.amount | number:'1.2-2' }}$
+                <span [ngClass]="'font-semibold text-sm ' + (transaction.movementType == 0 ? 'text-green-600' : 'text-red-600')">
+                    {{ transaction.movementType == 0 ? '+' : '' }}{{ transaction.amount | number:'1.2-2' }}$
                 </span>
             </div>
         </div>

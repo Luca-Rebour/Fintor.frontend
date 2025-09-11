@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,ts}"],
+  content: [
+    "./src/**/*.{html,ts}"
+  ],
   darkMode: ['class', '[data-theme="dark"]'], // soporta .dark y data-theme
   theme: {
     extend: {
@@ -25,4 +27,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}
